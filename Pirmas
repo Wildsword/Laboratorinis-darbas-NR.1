@@ -1,4 +1,11 @@
-//cpp
+# Namų darbas
+---
+
+##V 0.1
+
+Pirmas įkėlimas
+
+```cpp
 #include <iostream>
 #include <iomanip>
 #include <string>
