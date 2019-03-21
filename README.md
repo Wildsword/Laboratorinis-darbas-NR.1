@@ -48,7 +48,9 @@ int main()
     cout.fill(' ');
     for(i=0; i<n; i++)
         cout<<setw(15)<<left<<vardas[i]<<setw(15)<<left<<pavarde[i]<<setw(20)<<setprecision(3)<<right<<b[i]<<endl;
-
+    cout.fill('-');
+    cout.width(65);
+    cout<<"-"<<endl;
     return 0;
 }
 
@@ -109,6 +111,7 @@ int main()
           cout<<p<<" "<<nd[p]<<" "<<nd[p+1]<<endl;
         }
 
+
     }
 
     cout <<setw(15)<<left<<"Vardas " <<setw(15)<<left<<"Pavarde "<<setw(20)<<right<<"Galutinis balas "<<setw(15)<<right<<"Mediana "<< endl;
@@ -118,6 +121,8 @@ int main()
     cout.fill(' ');
     for(i=1; i<=n; i++)
         cout<<setw(15)<<left<<vardas[i]<<setw(15)<<left<<pavarde[i]<<setw(20)<<setprecision(3)<<right<<b[i]<<setw(15)<<setprecision(3)<<right<<med[i]<<endl;
-
+    cout.fill('-');
+    cout.width(65);
+    cout<<"-"<<endl;
     return 0;
 }
