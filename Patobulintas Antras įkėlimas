@@ -1,0 +1,116 @@
+#Namų darbas
+---
+##V0.1
+
+Patobulintas antras įkėlimas
+
+
+```cpp
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+struct mediana {
+double nd;
+};
+
+int j, i, k, n, p, t;
+    double h[15];
+    double med[15];
+    double b[15];
+    double o;
+    string vardas[15], pavarde[15];
+
+void rikiavimas (mediana teip[], int&k )
+{
+    int nuo;
+    double q;
+        for(int i = 1; i <= k+1 - 1; i++)
+        {
+            nuo = i;
+                for(int j = i+1; j < k+1; j++)
+                {
+                if (teip[j].nd < teip[nuo].nd)
+                nuo = j;
+                }
+            q = teip[nuo].nd;
+            teip[nuo].nd = teip[i].nd;
+            teip[i].nd = q;
+        }
+};
+
+void duomenys (mediana teip[] )
+{
+    cout<<"Iveskite studentu skaiciu :"<<endl;
+    cin>>n;
+        for(i=1; i<=n; i++)
+        {
+            cout<<"Studento varda ir pavarde :"<<endl;
+            cin>>vardas[i]>>pavarde[i];
+            cout<<" Kiek namu darbu studentas atliko per laikotarpi?"<<endl;
+            cin>>k;
+                if(k>0)
+                    cout<<"Iveskite visus gautus pazymius uz namu darbus :"<<endl;
+        for(j=1; j<=k; j++)
+        {
+            cin>>teip[j].nd;
+            h[i]=h[i]+teip[j].nd;
+        }
+            h[i]=h[i]/k;
+            cout<<"Iveskite pazymi uz egzamina :";
+            cin>>teip[k+1].nd;
+            b[i]=(teip[k+1].nd+h[i])/2;
+        }
+
+};
+
+void media (mediana teip[], int&k, int&n)
+{
+    for(i=1; i<=n; i++)
+    {
+        t=k+1;
+        if(t%2>0)
+        {
+            o=t;
+            o=o/2+0.5;
+            p=o;
+            med[i]=teip[p].nd;
+        }
+            else
+            {
+                o=t/2;
+                p=o;
+                med[i]=(teip[p].nd+teip[p+1].nd)/2;
+            }
+    }
+};
+
+void lentele ()
+{
+    cout <<setw(15)<<left<<"Vardas " <<setw(15)<<left<<"Pavarde "<<setw(20)<<right<<"Galutinis balas "<<setw(15)<<right<<"Mediana "<< endl;
+    cout.fill('-');
+    cout.width(65);
+    cout<<"-"<<endl;
+    cout.fill(' ');
+        for(i=1; i<=n; i++)
+            cout<<setw(15)<<left<<vardas[i]<<setw(15)<<left<<pavarde[i]<<setw(20)<<setprecision(3)<<right<<b[i]<<setw(15)<<setprecision(3)<<right<<med[i]<<endl;
+    cout.fill('-');
+    cout.width(65);
+    cout<<"-"<<endl;
+}
+
+int main()
+{
+
+    mediana teip[15];
+    duomenys(teip);
+    rikiavimas(teip, k);
+    media(teip, k, n);
+    lentele();
+
+
+    return 0;
+}
