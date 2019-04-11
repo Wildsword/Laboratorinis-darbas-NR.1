@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1555015633 source:c:\users\wildsword\desktop\programavimas\vektoriai naujas\main.cpp
+	<iostream>
+	<cmath>
+	<iomanip>
+	<vector>
+	<algorithm>
+	<fstream>
+
