@@ -21,7 +21,7 @@ int main()
 {
     student a;
     vector<student>isvestis;
-    int pazimys=1, suma=0, E, ats;
+    int pazimys=1, suma=0, E, i, ats;
     string ArTesti={"y"};
     while(ArTesti=="y")
     {
@@ -57,6 +57,9 @@ int main()
 
     else
         a.nd.push_back(E);
+
+    for(i=0; i<a.nd.size(); i++)
+    cout<<a.nd[i]<<endl;
 
     a.balas=E*1.0*0.6+suma/(a.nd.size()-1)*1.0*0.4;
 
