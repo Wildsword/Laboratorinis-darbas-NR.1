@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1555059813 source:c:\users\wildsword\desktop\programavimas\darbas su failais\main.cpp
+	<iostream>
+	<cmath>
+	<iomanip>
+	<vector>
+	<algorithm>
+	<fstream>
+
