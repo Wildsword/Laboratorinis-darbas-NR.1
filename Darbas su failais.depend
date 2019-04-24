@@ -1,5 +1,11 @@
 # depslib dependency file v1.0
-1555059813 source:c:\users\wildsword\desktop\programavimas\darbas su failais\main.cpp
+1556149437 source:c:\users\wildsword\desktop\programavimas\darbas su failais\main.cpp
+	"Header1.h"
+
+1555065037 source:c:\users\wildsword\desktop\programavimas\darbas su failais\header1.cpp
+	"Header1.h"
+
+1556146945 c:\users\wildsword\desktop\programavimas\darbas su failais\header1.h
 	<iostream>
 	<cmath>
 	<iomanip>

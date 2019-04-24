@@ -1,26 +1,14 @@
-#include <iostream>
-#include <cmath>
-#include <iomanip>
-#include <vector>
-#include <algorithm>
-#include <fstream>
+#include "Header1.h"
 
-using namespace std;
 
-struct student
-{
-    vector <int> nd;
-    string vardas, pavarde;
-    double mediana, balas;
-};
 
 int main()
 {
     student a;
     vector<student>isvestis;
-    int pazymys=1, suma=0, E, i, ats, sk;
+    int pazymys=1, suma=0, E, i, ats, sk, m=0;
     string ArTesti={"y"};
-    string pasirinkimas1, pasirinkimas2, eilute;
+    string pasirinkimas1, pasirinkimas2, eilute, x;
 
     cout<<"Noredami svieziu skaiciu, spauskite <y>, noredami juos nuskaityti is failo, spauskite <n>"<<endl;
     klausimas:
@@ -33,34 +21,76 @@ int main()
     if(pasirinkimas1=="n")
     {
         ifstream in ("Kursiokai.txt");
+         while(1)
+    {
+        start:
+        int j=0;
+        suma=0;
+        pazymys=0;
+        eilute.clear();
+        a.vardas.clear();
+        a.pavarde.clear();
+        a.nd.clear();
         getline(in, eilute);
-        while(in.good())
+        if(eilute.length()==0)
+            break;
+        else
         {
-            a.nd.clear();
-            suma=0;
-            in>>a.vardas>>a.pavarde;
-        while(in>>pazymys)
-            {
-            in>>pazymys;
-            a.nd.push_back(pazymys);
-            suma=suma+pazymys;
+             m++;
+        if (m<2)
+            goto start;
+        while(eilute[j]!=' ')
+        {
+            a.vardas.push_back(eilute[j]);
+            j++;
+        }
+        j++;
+        while(eilute[j]!=' ')
+             {
+            a.pavarde.push_back(eilute[j]);
+            j++;
             }
-            in>>E;
-            a.nd.push_back(E);
-            a.balas=E*1.0*0.6+suma/(a.nd.size()-1)*1.0*0.4;
-
+        for(int k=j; k<=eilute.length(); k++)
+       {
+            if(eilute[k]==' ' || k==eilute.length())
+            {
+                if(a.z.length()>0)
+                {
+                x=a.z;
+                pazymys=atoi(x.c_str());
+                a.nd.push_back(pazymys);
+                suma=suma+pazymys;
+                a.z.clear();
+                }
+                else
+                k=k;
+            }
+            else
+            {
+            a.z.push_back(eilute[k]);
+            }
+        }
+        }
+    cout<<suma<<endl;
+    suma=suma-a.nd[a.nd.size()-1];
     sort(a.nd.begin(), a.nd.end());
-
-    if(a.nd.size()%2==0)
+    if(a.nd.size()-1==0)
+        a.mediana=a.nd[a.nd.size()];
+    else if(a.nd.size()%2==0)
     {
         a.mediana=(a.nd[a.nd.size()/2-1]+a.nd[a.nd.size()/2])*1.0/2;
     }
     else
         a.mediana=a.nd[a.nd.size()/2];
+
+    if(a.nd.size()-1==0)
+        a.balas=a.nd[a.nd.size()]*1.0*0.6;
+    else
+    a.balas=(a.nd[a.nd.size()-1]*1.0*0.6)+(suma/(a.nd.size()-1)*1.0*0.4);
         isvestis.push_back(a);
-        }
+    }
         in.close();
-    //sort(a.pavarde.begin(), a.pavarde.end());
+
     cout <<setw(15)<<left<<"Vardas " <<setw(15)<<left<<"Pavarde "<<setw(15)<<left<<"Mediana "<<setw(15)<<right<<"Galutinis balas"<< endl;
     cout.fill('-');
     cout.width(60);
@@ -107,7 +137,7 @@ int main()
     a.nd.erase(a.nd.end()-1);
     cout<<"Koki pazymi gavo uz egzamina? "<<endl;
     cin>>E;
-    if(cin.fail())
+    if(cin.fail() || E>10 || E<0)
     {
         cin.clear();
         cin.ignore(256,'\n');
@@ -122,6 +152,7 @@ int main()
     {
      cout<<"Kiek norite pazymiu uz namu darbus?"<<endl;
      cin>>sk;
+     suma=0;
      for (i=0; i<sk; i++)
         {
             pazymys=(rand()%10)+1;
@@ -131,17 +162,21 @@ int main()
             E=(rand()%10)+1;
             a.nd.push_back(E);
     }
-    a.balas=E*1.0*0.6+suma/(a.nd.size()-1)*1.0*0.4;
 
     sort(a.nd.begin(), a.nd.end());
-
-    if(a.nd.size()%2==0)
+    if(a.nd.size()-1==0)
+        a.mediana=a.nd[a.nd.size()];
+    else if(a.nd.size()%2==0)
     {
         a.mediana=(a.nd[a.nd.size()/2-1]+a.nd[a.nd.size()/2])/2;
     }
     else
         a.mediana=a.nd[a.nd.size()/2];
-
+    if(a.nd.size()-1==0)
+        a.balas=E*1.0*0.6;
+    else
+   a.balas=(E*1.0*0.6)+(suma/(a.nd.size()-1)*1.0*0.4);
+   isvestis.push_back(a);
     cout<<"Jei norite testi, spauskite <y>. Noredami pereiti prie duomenu isvedimo spauskite <n>"<<endl;
     klausimas2:
     cin>>ArTesti;
@@ -150,7 +185,6 @@ int main()
         cout<<"Tokio pasirinkimo nebuvo, veskite is naujo:"<<endl;
         goto klausimas2;
     }
-        isvestis.push_back(a);
 }
 if(pasirinkimas1=="y" && ArTesti=="n")
 {
@@ -164,7 +198,7 @@ if(pasirinkimas1=="y" && ArTesti=="n")
     cout<<"-"<<endl;
     cout.fill(' ');
         for (student x : isvestis)
-            cout<<setw(15)<<left<<x.vardas<<setw(15)<<left<<x.pavarde<<setw(20)<<setprecision(3)<<fixed<<right<<x.balas<<endl;
+            cout<<setw(15)<<left<<x.vardas<<setw(15)<<left<<x.pavarde<<setw(20)<<setprecision(2)<<fixed<<right<<x.balas<<endl;
     cout.fill('-');
     cout.width(50);
     cout<<"-"<<endl;
@@ -177,7 +211,7 @@ if(pasirinkimas1=="y" && ArTesti=="n")
     cout<<"-"<<endl;
     cout.fill(' ');
         for (student x : isvestis)
-            cout<<setw(15)<<left<<x.vardas<<setw(15)<<left<<x.pavarde<<setw(15)<<setprecision(3)<<fixed<<right<<x.mediana<<endl;
+            cout<<setw(15)<<left<<x.vardas<<setw(15)<<left<<x.pavarde<<setw(15)<<setprecision(2)<<fixed<<right<<x.mediana<<endl;
     cout.fill('-');
     cout.width(45);
     cout<<"-"<<endl;
